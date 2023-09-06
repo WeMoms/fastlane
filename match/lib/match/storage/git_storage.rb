@@ -169,7 +169,8 @@ module Match
           UI.message("Private key file does not exist, will continue by using it as a raw key.")
           ssh_add = "- <<< \"#{self.git_private_key}\""
         end
-        return "ssh-agent bash -c 'ssh-add #{ssh_add}; #{command}'"
+        #return "ssh-agent bash -c 'ssh-add #{ssh_add}; #{command}'"
+        return "#{command} -c core.sshCommand='ssh -i #{self.git_private_key}'"
       end
 
       private
